@@ -2,10 +2,10 @@ function spiral(array, action) {
 	console.log("New Round");
 	console.log("Array is: ", array);
 	var result = [];
-	if (array === []) {
+	if (array.length === 0) {
 		return;
 	}
-	else if (type(array[0]) !== type([])) {
+	else if (!array.isArray(array[0])) {
 		for (var i = 0; i < array.length; i ++) {
 			action(array[i]);
 		}
@@ -19,7 +19,7 @@ function spiral(array, action) {
 	result = result.concat(reverseArray(array.pop()));
 	for (var i = array.length-1; i >= 0; i--) {
 		result = result.concat((array[i][0]));
-		array = array[i].slice(1);
+		array[i] = array[i].slice(1);
 	}
 	result.forEach(action);
 	spiral(array, action);
