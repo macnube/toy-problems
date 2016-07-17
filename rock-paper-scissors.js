@@ -3,32 +3,24 @@
 // rps() => [['rock','rock','rock'], ['rock','rock','paper'], ['rock','rock','scissors']....]
 
 var rps = function () {
-	var rounds = 2;
 	var option = ['rock', 'paper', 'scissors'];
 	var result = [];
-	for (var i = 0; i < option.length; i ++ ) {
-		var firstValue = option[i];
-		console.log(firstValue);
-		for (var j = 0 ;j < option.length; j++) {
-			var secondValue = option[j];
-			console.log(secondValue);
-			var outcome = [firstvalue, secondValue];
-			result.push(outcome);
-			console.log(result);
+	for (var k = 0; k < option.length; k++) {
+		var firstValue = option[k];
+		for (var i = 0; i < option.length; i ++ ) {
+			var secondValue = option[i];
+			for (var j = 0 ;j < option.length; j++) {
+				var thirdValue = option[j];
+				var outcome = [firstValue, secondValue, thirdValue];
+				result.push(outcome);
+			}
 		}
 	}
 	return result;
 
 };
 
-var add = function (x, y) {
-	return x + y;
-};
-
-console.log(add(1,2));
-
 console.log(rps());
-console.log('test');
 
 
 
@@ -39,5 +31,32 @@ console.log('test');
 // rpsN(2) => [['rock', 'rock'], ['rock', 'paper'], ['rock', 'scissors'], ['paper', 'rock']....]
 
 var rpsN = function (rounds) {
-
+	var option = ['rock', 'paper', 'scissors'];
+	var result = [];
+	var outcome = [];
+	function nextRound (roundsLeft, outcome) {
+		var n = roundsLeft;
+		var newOutcome = outcome;
+		if (roundsLeft === 0) {
+			result.push(outcome)
+		}
+		else if (roundsLeft === 1) {
+			option.forEach(function (choice) {
+				newOutcome = outcome.concat(choice);
+				result.push(newOutcome);
+			});
+		}
+		else {
+			n = n - 1;
+			option.forEach(function (choice) {
+				newOutcome = outcome.concat(choice);
+				nextRound(n, newOutcome);
+			});
+		}
+		return result;
+	}
+	nextRound(rounds, outcome);
+	return result;
 };
+
+console.log(rpsN(4));

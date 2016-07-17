@@ -21,5 +21,35 @@
  */
 
 function nthFibonacci (n) {
+	if (n === 0 ) {
+		return 0;
+	}
+	else if (n === 1) {
+		return 1;
+	}
+	else {
+		return nthFibonacci(n-1) + nthFibonacci(n-2)
+	}
 
 }
+
+console.log(nthFibonacci(6))
+
+function nthFibIter (n) {
+	var current = 0;
+	var previous = 0;
+	var store = 0;
+	for (var i = 0; i <= n; i++) {
+		if (i === 1) {
+			current = 1;
+		}
+		else {
+			store = current;
+			current = current + previous;
+			previous = store;
+		}
+	}
+	return current
+}
+
+console.log(nthFibIter(8));
