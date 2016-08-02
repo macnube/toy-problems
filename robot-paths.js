@@ -65,6 +65,6 @@ var robotPaths = function (x, y) {
 	};
 };
 
-console.log(robotPaths(3,3));
+console.log(robotPaths(4,4));
 
 
